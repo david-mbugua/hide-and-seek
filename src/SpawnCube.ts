@@ -1,10 +1,12 @@
 export class SpawnCube extends Entity{
-    public points:number
+    public seekerPoints:number
+    public hiderPoints:number
     private userPosition:Vector3
     constructor(public x: number, public y: number, public z: number){
         super()
         this.userPosition = Camera.instance.feetPosition
-        this.points=0
+        this.hiderPoints=0
+        this.seekerPoints=0
         this.addComponent(new Transform({ position: new Vector3(x, y, z) }))
         this.addComponent(new BoxShape())
         engine.addEntity(this)
@@ -14,11 +16,13 @@ export class SpawnCube extends Entity{
             }))
     }
     addPoints(x:number){
-        this.points += x
-        log(this.points)
+        this.hiderPoints += x
+        log(this.hiderPoints)
         let position = Vector3.Distance(new Vector3(this.x,this.y,this.z), this.userPosition)
-        if(position < 2){
+        if(position <= 4){
             log("Player is close")
+            this.seekerPoints += x
+            log(this.seekerPoints)
         }else{
             log("player is far")
         }
