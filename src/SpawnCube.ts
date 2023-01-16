@@ -17,7 +17,7 @@ export class SpawnCube extends Entity{
         this.points += x
         log(this.points)
         let position = Vector3.Distance(new Vector3(this.x,this.y,this.z), this.userPosition)
-        if(position < 2){
+        if(position <= 4){
             log("Player is close")
         }else{
             log("player is far")
