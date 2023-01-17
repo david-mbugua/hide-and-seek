@@ -8,7 +8,7 @@ export class SpawnCube extends Entity{
         this.hiderPoints=0
         this.seekerPoints=0
         this.setPosition(new Vector3(x, y, z))
-        this.addComponent(new BoxShape())
+        this.addComponent(new BoxShape()).visible = false
         engine.addEntity(this)
         this.addComponent(
             new OnPointerDown(() => {
@@ -29,6 +29,6 @@ export class SpawnCube extends Entity{
         log(`The user position is: ${position}`)
     }
     setPosition(vector3:Vector3){
-        this.addComponentOrReplace(new Transform({ position: vector3 }))
+        this.addComponentOrReplace(new Transform({ position: vector3,scale: new Vector3(1,3.7,1) }))
     }
 }
