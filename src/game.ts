@@ -7,7 +7,7 @@ import { PlayerCube } from "./PlayerCube"
 
 class RotatorSystem {
   camera = new Camera()
-  playerCube = new PlayerCube(0,0,0)
+  playerCube = new PlayerCube(-1,-1,-1)
   ws = new WebSocket("ws://localhost:8080")
   // this group will contain every entity that has a Transform component
   group = engine.getComponentGroup(Transform)
