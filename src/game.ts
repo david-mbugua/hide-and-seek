@@ -6,11 +6,14 @@ import { movePlayerTo } from "@decentraland/RestrictedActions"
 
 class RotatorSystem {
   camera = new Camera()
+  playerCube = new SpawnCube(0,0,0)
   ws = new WebSocket("ws://localhost:8080")
   // this group will contain every entity that has a Transform component
   group = engine.getComponentGroup(Transform)
   time: number = 0
   update(dt: number) {
+    const feetPosition = this.camera.feetPosition
+    this.playerCube.setPosition(this.camera.feetPosition)
     this.time+=dt
     if(this.time>1) {this.ws.send(JSON.stringify({ethAddress: "0x123", status: "seeker", position: this.camera.position.asArray()}))
   this.time = 0}
@@ -23,6 +26,7 @@ class RotatorSystem {
       transform.rotate(Vector3.Up(), dt * 10)
     }
   }
+  
 }
 
 // Add a new instance of the system to the engine

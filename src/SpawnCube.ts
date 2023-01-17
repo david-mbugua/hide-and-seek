@@ -7,7 +7,7 @@ export class SpawnCube extends Entity{
         this.userPosition = Camera.instance.feetPosition
         this.hiderPoints=0
         this.seekerPoints=0
-        this.addComponent(new Transform({ position: new Vector3(x, y, z) }))
+        this.setPosition(new Vector3(x, y, z))
         this.addComponent(new BoxShape())
         engine.addEntity(this)
         this.addComponent(
@@ -27,5 +27,8 @@ export class SpawnCube extends Entity{
             log("player is far")
         }
         log(`The user position is: ${position}`)
+    }
+    setPosition(vector3:Vector3){
+        this.addComponentOrReplace(new Transform({ position: vector3 }))
     }
 }
