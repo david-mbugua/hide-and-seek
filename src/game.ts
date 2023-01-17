@@ -7,7 +7,7 @@ import { PlayerCube } from "./PlayerCube"
 
 class RotatorSystem {
   camera = new Camera()
-  playerCube = new PlayerCube(-1,-1,-1)
+  playerCube = new PlayerCube(0,0,0)
   seekerPortal = new TriggerButton()
   hiderPortal = new TriggerButton()
   ws = new WebSocket("ws://localhost:8081")
@@ -16,7 +16,7 @@ class RotatorSystem {
   time: number = 0
   update(dt: number) {
     const feetPosition = this.camera.feetPosition
-    this.playerCube.setPosition(feetPosition)
+    // this.playerCube.setPosition(feetPosition)
     this.time+=dt
     const playerStatus = this.playerCube.getStatus()
     if(this.time>1) {

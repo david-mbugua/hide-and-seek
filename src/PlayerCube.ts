@@ -15,6 +15,7 @@ export class PlayerCube extends Entity{
             new OnPointerDown(() => {
               this.addPoints(1)
             }))
+        this.setParent(engine.avatarEntity)
     }
     getStatus(){
         return this.status
@@ -33,7 +34,7 @@ export class PlayerCube extends Entity{
         log(`The user position is: ${position}`)
     }
     setPosition(vector3:Vector3){
-        this.addComponentOrReplace(new Transform({ position: vector3,scale: new Vector3(1,3.7,1) }))
+        this.addComponentOrReplace(new Transform({ position: vector3,scale: new Vector3(1,2.5,1) }))
     }
     setStatus(status:string){
         this.status = status
