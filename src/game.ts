@@ -13,7 +13,8 @@ class RotatorSystem {
   time: number = 0
   update(dt: number) {
     const feetPosition = this.camera.feetPosition
-    this.playerCube.setPosition(this.camera.feetPosition)
+    const headPosition = new Vector3(feetPosition.x, feetPosition.y + 2.5, feetPosition.z)
+    this.playerCube.setPosition(headPosition)
     this.time+=dt
     if(this.time>1) {this.ws.send(JSON.stringify({ethAddress: "0x123", status: "seeker", position: this.camera.position.asArray()}))
   this.time = 0}
