@@ -3,10 +3,11 @@
 import { SpawnCube } from "./SpawnCube"
 import { TriggerButton } from "./triggerButton"
 import { movePlayerTo } from "@decentraland/RestrictedActions"
+import { PlayerCube } from "./PlayerCube"
 
 class RotatorSystem {
   camera = new Camera()
-  playerCube = new SpawnCube(0,0,0)
+  playerCube = new PlayerCube(0,0,0)
   ws = new WebSocket("ws://localhost:8080")
   // this group will contain every entity that has a Transform component
   group = engine.getComponentGroup(Transform)
