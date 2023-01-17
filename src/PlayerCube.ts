@@ -2,6 +2,7 @@ export class PlayerCube extends Entity{
     public seekerPoints:number
     public hiderPoints:number
     private userPosition:Vector3
+    private status:string = ""
     constructor(public x: number, public y: number, public z: number){
         super()
         this.userPosition = Camera.instance.feetPosition
@@ -14,6 +15,9 @@ export class PlayerCube extends Entity{
             new OnPointerDown(() => {
               this.addPoints(1)
             }))
+    }
+    getStatus(){
+        return this.status
     }
     addPoints(x:number){
         this.hiderPoints += x
@@ -30,5 +34,9 @@ export class PlayerCube extends Entity{
     }
     setPosition(vector3:Vector3){
         this.addComponentOrReplace(new Transform({ position: vector3,scale: new Vector3(1,3.7,1) }))
+    }
+    setStatus(status:string){
+        this.status = status
+        log(`status should be: ${this.status}`)
     }
 }
