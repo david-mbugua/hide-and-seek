@@ -3,10 +3,15 @@
 import { SpawnCube } from "./SpawnCube"
 
 class RotatorSystem {
+  camera = new Camera()
+  ws = new WebSocket("ws://localhost:8080")
   // this group will contain every entity that has a Transform component
   group = engine.getComponentGroup(Transform)
-
+  time: number = 0
   update(dt: number) {
+    this.time+=dt
+    if(this.time>1) {this.ws.send(JSON.stringify({ethAddress: "0x123", status: "seeker", position: this.camera.position.asArray()}))
+  this.time = 0}
     // iterate over the entities of the group
     for (const entity of this.group.entities) {
       // get the Transform component of the entity
