@@ -13,6 +13,7 @@ export class PlayerCube extends Entity{
         engine.addEntity(this)
         this.addComponent(
             new OnPointerDown(() => {
+                log("player cube clicked")
               this.addPoints(1)
             }))
         this.setParent(engine.avatarEntity)

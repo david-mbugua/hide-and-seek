@@ -12,6 +12,7 @@ export class SpawnCube extends Entity{
         engine.addEntity(this)
         this.addComponent(
             new OnPointerDown(() => {
+                log("spawn cube clicked")
               this.addPoints(1)
             }))
     }

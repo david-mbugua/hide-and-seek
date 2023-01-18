@@ -4,13 +4,14 @@ import { SpawnCube } from "./SpawnCube"
 import { TriggerButton } from "./triggerButton"
 import { movePlayerTo } from "@decentraland/RestrictedActions"
 import { PlayerCube } from "./PlayerCube"
+import { getUserData } from "@decentraland/Identity"
 
 class RotatorSystem {
   camera = new Camera()
   playerCube = new PlayerCube(0,0,0)
   seekerPortal = new TriggerButton()
   hiderPortal = new TriggerButton()
-  ws = new WebSocket("ws://localhost:8081")
+  ws = new WebSocket("ws://localhost:8082")
   // this group will contain every entity that has a Transform component
   group = engine.getComponentGroup(Transform)
   time: number = 0
@@ -19,11 +20,13 @@ class RotatorSystem {
     // this.playerCube.setPosition(feetPosition)
     this.time+=dt
     const playerStatus = this.playerCube.getStatus()
-    if(this.time>1) {
-      log(`status update: ${playerStatus}`)
+      getUserData().then((result)=>{
+        log(`user data: ${result?.userId}`)
+      
       this.ws.send(JSON.stringify({ethAddress: "0x123", status: playerStatus, position: this.camera.position.asArray()
     }))
-  this.time = 0}
+  })
+  this.time = 0
     // iterate over the entities of the group
     for (const entity of this.group.entities) {
       // get the Transform component of the entity
