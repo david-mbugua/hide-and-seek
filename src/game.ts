@@ -21,9 +21,10 @@ class RotatorSystem {
     this.time+=dt
     const playerStatus = this.playerCube.getStatus()
       getUserData().then((result)=>{
-        log(`user data: ${result?.userId}`)
+        const userId = result?.userId
+        log(`user data: ${userId}`)
       
-      this.ws.send(JSON.stringify({ethAddress: "0x123", status: playerStatus, position: this.camera.position.asArray()
+      this.ws.send(JSON.stringify({ethAddress: `${userId}`, status: playerStatus, position: this.camera.position.asArray()
     }))
   })
   this.time = 0
